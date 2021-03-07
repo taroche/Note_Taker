@@ -26,7 +26,7 @@ app.get('/api/notes', (req, res) => {
 app.post('/api/notes', (req, res) => {
     let newNote = req.body
     //get npm package for id
-    newNote.id = Math.floor(Math.random() * 9999999999)
+    newNote.id = uuidv4();
  
     db.push(newNote)
  
