@@ -11,6 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 // parse urlencoded request body
 app.use(express.json());
 
+app.use(express.static(__dirname + '/public'));
+
 app.listen(PORT, () => {
     console.log(`listening on ${PORT}`)
 })
