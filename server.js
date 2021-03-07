@@ -34,7 +34,23 @@ app.post('/api/notes', (req, res) => {
  
         res.json(db)
     })
- })
+ });
+
+ app.delete('/api/notes/:id', (req, res) => {
+    let idToBeDeleted = req.params.id
+    
+    for(i=0;i<db.length;i++){
+        if(idToBeDeleted == db[i].id){
+            db.splice(i, 1)
+        }
+    }
+
+    fs.writeFile('./db/db.json', JSON.stringify(db), (err) => {
+        if (err) throw err
+ 
+        res.json(db)
+    })
+});
 
 app.listen(PORT, () => {
     console.log(`listening on ${PORT}`)
