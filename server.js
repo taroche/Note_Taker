@@ -20,7 +20,21 @@ app.get('/api/notes', (req, res) => {
         return res.json(JSON.parse(data))
     })
 
-})
+});
+
+app.post('/api/notes', (req, res) => {
+    let newNote = req.body
+    //get npm package for id
+    newNote.id = Math.floor(Math.random() * 9999999999)
+ 
+    db.push(newNote)
+ 
+    fs.writeFile('./db/db.json', JSON.stringify(db), (err) => {
+        if (err) throw err
+ 
+        res.json(db)
+    })
+ })
 
 app.listen(PORT, () => {
     console.log(`listening on ${PORT}`)
